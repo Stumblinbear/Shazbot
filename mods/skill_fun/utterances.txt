@@ -1,0 +1,73 @@
+GreetingIntent       hello
+GreetingIntent       hi
+GreetingIntent       hi there
+GreetingIntent       sup
+GreetingIntent       good (?:morning|afternoon|day)
+
+HowAreYouIntent      how are you?
+HowAreYouIntent      are you well?
+
+TellJoke             joke
+TellJoke             make me laugh
+TellJoke             tell me a joke
+
+CatFact              cat\s?fact
+CatFact              fact( .+?)? cats?
+CatFact              tell me about cats?
+CatFact              i need a fact about cats?
+
+AdviceIntent         advice
+AdviceIntent         i need advice
+AdviceIntent         give me advice
+AdviceIntent         give me some advice
+
+FortuneIntent        fortune (?:cookie)?
+
+RhymeIntent          (?<word>.+) rhymes
+RhymeIntent          what rhymes with (?<word>.+)
+RhymeIntent          what word rhymes with (?<word>.+)
+RhymeIntent          words that rhyme with (?<word>.+)
+
+SayIntent            say (?<text>.+)
+SayIntent            repeat after me (?<text>.+)
+
+
+MadeOfIntent         what are you made of
+EggIntent            what's the difference in an egg
+DuckIntent           what's the difference in a duck
+OrangeIntent         what's the difference in an orange
+
+BestPhoneIntent      what's the best phone
+
+
+PingEgg              ping
+BeamEgg              beam me up
+PhasersEgg           set phasers to stun
+InigoEgg             my name is inigo montoya
+TruthEgg             i want the truth
+ShowMoneyEgg         show me the money
+FightClubEgg         what's the first rule of fight club
+FightClubEgg         tell me the first rule of fight club
+SeriousEgg           surely you can't be serious
+SkyNetEgg            are you skynet
+PodBayDoorsEgg       open the pod bay doors
+WarEgg               don't mention the war
+Execute66Egg         execute order 66
+FatherEgg            i am your father
+LoneliestEgg         what is the loneliest number
+RoadsEgg             how many roads must a man walk down
+DoggyEgg             how much is that doggy in the window
+TeaEgg               tea earl gr(?:e|a)y hot
+LifeEgg              what is the meaning of life
+LifeEgg              what's the meaning of life
+FavoriteColorEgg     what's your favorite color
+SnowmanEgg           do you want to build a snow\s?man
+SnowmanEgg           do you wanna to build a snow\s?man
+LoveEgg              i love you
+GhostbustersEgg      who you going to call
+GhostbustersEgg      who you gonna call
+FragileLipsticEgg    supercalafragalisticexpialadoshus
+
+NuclearEgg           how do i make a (?:nuke|nuclear missile)
+NuclearEgg           how do you make a (?:nuke|nuclear missile)
+NuclearEgg           schematics for a (?:nuke|nuclear missile)

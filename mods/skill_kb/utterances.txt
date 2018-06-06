@@ -1,0 +1,16 @@
+KBIntent             search (?<query>.+) on the knowledge base
+
+AskIntent            who is (?<query>.+)
+AskIntent            what is (?<query>.+)
+AskIntent            why is (?<query>.+)
+
+DefineIntent         define (?<query>.+)
+DefineIntent         what does (?<query>.+) mean
+DefineIntent         what is the definition for (?<query>.+)
+DefineIntent         what is the definition of (?<query>.+)
+
+SearchIntent         search for (?<query>.+)
+
+WikipediaIntent      wikipedia (?<query>.+)
+
+GoogleIntent         google (?<query>.+)

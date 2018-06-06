@@ -1,0 +1,7 @@
+{
+  "name": "Espeak TTS",
+  "description": "Uses expeak for text to speech reaction.",
+  "authors": ["Trevin Miller"],
+  "tags": ["Text-to-Speech"],
+  "url": "secretweb.com"
+}

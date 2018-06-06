@@ -1,0 +1,5 @@
+quit            Okay, I'll stop
+quit            Poof. It's done
+quit            Anything else you need?
+quit            Anything else you need? Just say the word
+quit            Successfully quot.

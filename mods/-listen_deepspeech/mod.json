@@ -1,0 +1,7 @@
+{
+  "name": "DeepSpeech STT",
+  "description": "Uses Mozilla's DeepSpeech for speech to text transformations.",
+  "authors": ["Trevin Miller"],
+  "tags": ["Speech-to-Text"],
+  "url": "secretweb.com"
+}

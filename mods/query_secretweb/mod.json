@@ -1,0 +1,7 @@
+{
+  "name": "SecretWeb",
+  "description": "Access the SecretWeb knowledge base.",
+  "authors": ["Trevin Miller"],
+  "tags": ["weather"],
+  "url": "secretweb.com"
+}

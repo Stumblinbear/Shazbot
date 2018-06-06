@@ -1,0 +1,9 @@
+{
+  "type": "HOTWORD",
+
+  "name": "Snowboy",
+  "description": "Use snowboy for hotword detection.",
+  "authors": ["Trevin Miller"],
+  "tags": ["Snowboy"],
+  "url": "secretweb.com"
+}

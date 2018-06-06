@@ -1,0 +1,7 @@
+{
+  "name": "IBM Watson STT",
+  "description": "Uses IBM's Watson for speech to text transformations.",
+  "authors": ["Trevin Miller"],
+  "tags": ["Speech-to-Text"],
+  "url": "secretweb.com"
+}

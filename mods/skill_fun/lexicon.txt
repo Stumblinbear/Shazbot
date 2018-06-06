@@ -1,0 +1,9 @@
+greetings             Sup
+greetings             Hello
+greetings             Greetings
+greetings             Hello, user
+greetings             Good day to you
+greetings             Finally, Master has returned
+
+howami                Can't complain
+howami                I don't know, how would you feel trapped in a box all day

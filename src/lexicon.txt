@@ -1,0 +1,34 @@
+mod.unknown             Attempted to resolve an unknown mod.
+mod.unknown             I've never heard of that mod before in my life.
+
+query.invalid           It seems a developer dropped the ball. That was an invalid query.
+query.invalid           Uhhh. You sent me an erroneous query.
+query.invalid           Misformatted query.
+
+intent.invalid          Attempted to resolve an unknown intent.
+
+action.success          Okay, I've done that.
+action.success          Need anything else? Just say the word.
+action.success          Alright, done!
+action.success          There you go.
+action.success          I got this shit.
+action.success          I have altered the state of the universe to complete that request.
+action.success          I am a god among computers.
+action.success          That was easy.
+action.success          Easy as pi.
+
+action.failed           Something went wrong.
+action.failed           I can't do that.
+action.failed           Oops.
+action.failed           Sorry, Master. Something went wrong.
+
+action.unknown          I can't do anything with that.
+action.unknown          Sorry, I'm clueless.
+action.unknown          You've asked me to do something I cannot.
+action.unknown          Excuse me?
+action.unknown          Whot.
+action.unknown          I have absolutely no idea what you've asked me to do.
+action.unknown          The universe has denied you that information.
+action.unknown          If I told you I'd have to kill you, and I don't have hands. Use your imagination.
+action.unknown          There is not a container big enough to hold all the shit you've asked me to do.
+action.unknown          I am not at liberty to discuss that subject.

@@ -1,0 +1,18 @@
+{
+  "utterances": [
+    "what is the weather in (?<location>.+)",
+    "tell me the weather in (?<location>.+)",
+    "weather (?:in|for) (?<location>.+)",
+    "what is the weather",
+    "tell me the weather",
+    "weather"
+  ],
+  "lexicon": {
+    "location.invalid": [
+      "I have no idea where that is.",
+      "What, do you want me to tell you the weather in Neverland?",
+      "Hm. I don't know where that is.",
+      "Sorry, I don't know where that is."
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "shazbot",
+  "version": "1.0.0",
+  "description": "Voice assistant",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "test": ""
+  },
+  "author": "Trevin Miller <stumblinbear@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "compromise": "^11.3.0",
+    "ddg": "0.0.3",
+    "express": "^4.16.3",
+    "fast-levenshtein": "^2.0.6",
+    "node-record-lpcm16": "^0.3.0",
+    "snowboy": "^1.2.0",
+    "speaker": "^0.4.1",
+    "wav": "^1.0.2",
+    "xregexp": "^4.0.0"
+  }
+}
