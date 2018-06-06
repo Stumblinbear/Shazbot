@@ -67,7 +67,7 @@ class Assistant {
         if(!this.mods[id].engine) continue;
 
         let action = Object.assign({mod: id}, this.mods[id].query(query));
-        if(!action || action.confidence <= 0) continue;
+        if(!action || action.confidence <= 0.2) continue;
 
         if(top == null || action.confidence > top.confidence)
           top = action;
@@ -81,15 +81,20 @@ class Assistant {
         query.action = top;
     }
 
-    return this.resolve(query);
+    return new Promise((resolve, reject) => {
+      this.resolve(query).then((result) => {
+        result.reaction = this.clean_reaction(result.reaction);
+
+        this.emit('result', result);
+        resolve(result);
+      });
+    });
   }
 
   resolve(query) {
     if(this.mods[query.action.mod]) {
       return new Promise((resolve, reject) => {
         this.mods[query.action.mod].resolve(query).then((reaction) => {
-          reaction = this.clean_reaction(reaction);
-
           resolve({
             success: true,
             trigger: query.trigger,
@@ -118,8 +123,15 @@ class Assistant {
   }
 
   clean_reaction(reaction) {
-    if(reaction)
+    if(reaction) {
       reaction = this.lexicon.replace(reaction);
+
+      if(reaction.say) {
+        if(typeof reaction.say == 'string')
+          reaction.say = [reaction.say];
+      }
+    }
+
 
     this.emit('clean_reaction', reaction);
 

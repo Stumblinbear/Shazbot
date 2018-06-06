@@ -6,6 +6,7 @@ let assistant = new Assistant();
 assistant.loadMods(path.join(__dirname, 'mods'));
 
 
+// HTTP Server
 const express = require('express');
 
 const http = express();
@@ -25,6 +26,28 @@ http.get('/', function(req, res) {
 http.listen(8080);
 
 
+// Telegram
+
+const TelegramBot = require('node-telegram-bot-api');
+
+const token = '';
+const bot = new TelegramBot(token, {polling: true});
+
+let teleAction = undefined;
+
+bot.on('message', (msg) => {
+  assistant.query({ trigger: 'text', text: msg.text, action: teleAction }).then((result) => {
+    if(result.reaction.action) teleAction = result.reaction.action;
+
+    for(let text of result.reaction.say)
+      bot.sendMessage(msg.chat.id, text);
+  });
+
+  teleAction = undefined;
+});
+
+
+// Terminal
 let action = undefined;
 
 const readline = require('readline');
