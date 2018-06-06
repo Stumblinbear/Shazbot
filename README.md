@@ -1,5 +1,7 @@
 ## Shazbot
 
+![forthebadge](https://forthebadge.com/images/badges/fuck-it-ship-it.svg)
+
 A quick and dirty voice assistant that can work both locally and remotely. Supports Google TTS/STT, IBM TTS/STT, and Wit.ai STT. Uses a custom intent engine ("Conform") that includes some rudimentary NLP. Also includes a "fallback" mod that searches an online Knowledge Base if no local mod is able to resolve the query.
 
 The name was chosen as an homage to Robin Williams: Shazbot from Mork and Mindy.
