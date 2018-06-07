@@ -1,7 +1,7 @@
 const path = require('path');
 const Assistant = require('./src');
 
-let assistant = new Assistant();
+let assistant = new Assistant(require('./config.json'));
 
 assistant.loadMods(path.join(__dirname, 'mods'));
 
@@ -19,6 +19,8 @@ http.use(bodyParser.urlencoded({
 
 http.get('/', function(req, res) {
   assistant.query(req.query).then((result) => {
+    console.log('HTTP:', result);
+
     res.json(result);
   });
 });
@@ -28,24 +30,26 @@ http.listen(8080);
 
 // Telegram
 
-const TelegramBot = require('node-telegram-bot-api');
+if(assistant.config.telegram) {
+  const TelegramBot = require('node-telegram-bot-api');
 
-const token = '';
-const bot = new TelegramBot(token, {polling: true});
+  const bot = new TelegramBot(assistant.config.telegram.botKey, {polling: true});
 
-let teleAction = undefined;
+  let teleAction = undefined;
 
-bot.on('message', (msg) => {
-  assistant.query({ trigger: 'text', text: msg.text, action: teleAction }).then((result) => {
-    if(result.reaction.action) teleAction = result.reaction.action;
+  bot.on('message', (msg) => {
+    assistant.query({ trigger: 'text', text: msg.text, action: teleAction }).then((result) => {
+      if(result.reaction.action) teleAction = result.reaction.action;
 
-    for(let text of result.reaction.say)
-      bot.sendMessage(msg.chat.id, text);
+      console.log('Telegram:', result);
+
+      for(let text of result.reaction.say)
+        bot.sendMessage(msg.chat.id, text);
+    });
+
+    teleAction = undefined;
   });
-
-  teleAction = undefined;
-});
-
+}
 
 // Terminal
 let action = undefined;
@@ -67,7 +71,7 @@ rl.on('line', function(line) {
       assistant.query({ trigger: 'text', text: line, action }).then((result) => {
         if(result.reaction.action) action = result.reaction.action;
 
-        console.log(result);
+        console.log('Console:', result);
 
         assistant.emit('result', result);
 

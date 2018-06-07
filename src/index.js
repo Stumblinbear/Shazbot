@@ -9,7 +9,9 @@ const loadMods = require('./mods');
 
 
 class Assistant {
-  constructor() {
+  constructor(config) {
+    this.config = config;
+
     this.verbose = false;
 
     this.name = 'Assistant';
@@ -41,7 +43,7 @@ class Assistant {
   query(query) {
     this.emit('query', query);
 
-    if(!query.text) return this.throw_error('query.invalid');
+    if(!query.text) return this.throw_error(query, 'query.invalid');
 
     let nlp = parse(query.text);
 
@@ -61,6 +63,8 @@ class Assistant {
     query.text = query.text.toLowerCase();
     query.text = query.text.replace(/[.\?!]/g,"");
 
+    let promise = undefined;
+
     if(!query.action) {
       let top = null;
       for(let id in this.mods) {
@@ -76,15 +80,13 @@ class Assistant {
       if(top == null) {
         this.emit('action_unknown', query);
         if(!query.action)
-          return this.throw_error('action.unknown');
+          return this.throw_error(query, 'action.unknown');
       }else
         query.action = top;
     }
 
     return new Promise((resolve, reject) => {
       this.resolve(query).then((result) => {
-        result.reaction = this.clean_reaction(result.reaction);
-
         this.emit('result', result);
         resolve(result);
       });
@@ -95,6 +97,8 @@ class Assistant {
     if(this.mods[query.action.mod]) {
       return new Promise((resolve, reject) => {
         this.mods[query.action.mod].resolve(query).then((reaction) => {
+          reaction = this.clean_reaction(reaction);
+
           resolve({
             success: true,
             trigger: query.trigger,
@@ -103,7 +107,7 @@ class Assistant {
           });
         }).catch((reaction) => {
           if(typeof reaction == 'string') {
-            this.throw_error(reaction).then(obj => { resolve(obj); });
+            this.throw_error(query, reaction).then(obj => { resolve(obj); });
             return;
           }
 
@@ -119,7 +123,7 @@ class Assistant {
       });
     }
 
-    return this.throw_error('mod.unknown');
+    return this.throw_error(query, 'mod.unknown');
   }
 
   clean_reaction(reaction) {
@@ -138,14 +142,18 @@ class Assistant {
     return reaction;
   }
 
-  throw_error(text) {
+  throw_error(query, text) {
     return new Promise((resolve, reject) => {
+      let reaction = { say: this.lexicon.replace(text) };
+
+      reaction = this.clean_reaction(reaction);
+
       resolve({
         success: false,
         error: text,
-        reaction: {
-          say: this.lexicon.replace(text)
-        }
+        trigger: query.trigger,
+        action: query.action,
+        reaction
       });
     });
   }
