@@ -16,11 +16,17 @@ module.exports = {
         }
 
         if(!args.location) {
-          reject({say: 'location.invalid'});
+          reject({ say: 'location.invalid' });
         }
 
         resolve({
-          say: 'The weather in ' + args.location + ' is a cool 17 degrees.'
+          say: 'The weather in ' + args.location + ' is a cool 17 degrees.',
+          display: {
+            image: 'https://www.wikihow.com/images/6/64/Stop-a-Dog-from-Jumping-Step-6-Version-2.jpg'
+          },
+          prompt: {
+            replies: [{text: 'Tomorrow', query: {mod: 'skill_weather', intent: 'SpecificWeather', args}}, {text: 'Next Week', query: 'weather in ' + args.location + ' next week?'}]
+          }
         });
       });
     });

@@ -43,25 +43,27 @@ class Assistant {
   query(query) {
     this.emit('query', query);
 
-    if(!query.text) return this.throw_error(query, 'query.invalid');
+    if(!query.text && !query.action) return this.throw_error(query, 'query.invalid');
 
-    let nlp = parse(query.text);
+    if(query.text) {
+      let nlp = parse(query.text);
 
-    query.unclean = query.text;
+      query.unclean = query.text;
 
-    query.metadata = {
-      places: nlp.places().data(),
-      topics: nlp.topics().data(),
-      dates: nlp.dates().data(),
-      people: nlp.people().data(),
-      nouns: nlp.nouns().data()
-    };
+      query.metadata = {
+        places: nlp.places().data(),
+        topics: nlp.topics().data(),
+        dates: nlp.dates().data(),
+        people: nlp.people().data(),
+        nouns: nlp.nouns().data()
+      };
 
-    nlp.normalize();
+      nlp.normalize();
 
-    query.text = nlp.out('text');
-    query.text = query.text.toLowerCase();
-    query.text = query.text.replace(/[.\?!]/g,"");
+      query.text = nlp.out('text');
+      query.text = query.text.toLowerCase();
+      query.text = query.text.replace(/[.\?!]/g,"");
+    }
 
     let promise = undefined;
 
@@ -127,15 +129,8 @@ class Assistant {
   }
 
   clean_reaction(reaction) {
-    if(reaction) {
+    if(reaction)
       reaction = this.lexicon.replace(reaction);
-
-      if(reaction.say) {
-        if(typeof reaction.say == 'string')
-          reaction.say = [reaction.say];
-      }
-    }
-
 
     this.emit('clean_reaction', reaction);
 

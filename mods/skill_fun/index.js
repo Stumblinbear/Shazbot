@@ -43,7 +43,10 @@ module.exports = {
 
           let lines = data.split('\n');
           resolve({
-            say: lines[Math.floor(Math.random() * lines.length)]
+            say: lines[Math.floor(Math.random() * lines.length)],
+            prompt: {
+            replies: [{text: 'Another!', query: 'cat fact'}]
+            }
           });
         });
       });

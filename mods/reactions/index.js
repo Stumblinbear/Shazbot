@@ -35,5 +35,21 @@ module.exports = {
           };
       }
     });
+
+    assistant.on('clean_reaction', (reaction) => {
+      if(typeof reaction.say == 'string')
+        reaction.say = [reaction.say];
+
+      if(reaction.display) {
+        if(reaction.display.image) {
+          if(!reaction.display.images)
+            reaction.display.images = [reaction.display.image]
+          delete reaction.display.image;
+        }
+
+        if(typeof reaction.display.images == 'string')
+          reaction.display.images = [reaction.display.images];
+      }
+    });
   }
 }
